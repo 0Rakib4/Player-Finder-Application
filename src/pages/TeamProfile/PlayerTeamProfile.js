@@ -1,11 +1,11 @@
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LoadingContext, UserContext } from '../../App';
 import { db } from '../../firebase';
 
 const PlayerTeamProfile = () => {
-    const [Team,setTeam]=useState();
+    const [Team,setTeam]=useState({});
     const [TeamMember,setTeamMember]=useState([]);
     const [user,setUser]=useContext(UserContext);
     const [loading,setLoading]=useContext(LoadingContext);
@@ -18,6 +18,7 @@ const PlayerTeamProfile = () => {
                 snapshot.docs.forEach((doc) => {
                     list.push({ id: doc.id, ...doc.data() })
                 });   
+                console.log(user,list)
                 setTeam(list.find(item=>item.TeamManagerEmail===user.TeamManagerEmail))
                 setLoading(false);
             }, (error) => {
@@ -30,6 +31,7 @@ const PlayerTeamProfile = () => {
     },[])
 
     useEffect(()=>{
+        
         const unsub = onSnapshot(
             collection(db, "users"),
             (snapshot) => {
@@ -47,14 +49,31 @@ const PlayerTeamProfile = () => {
             unsub();
         }
     },[Team])
-    const leave=()=>{
-        alert('left')
+    const leave=async()=>{
+        if(window.confirm("Are you sure to leave your team?")){
+            const docRef=doc(db,"users",user.id)
+            const snapshot=await getDoc(docRef);
+            if(snapshot.exists()){
+                let newData={...snapshot.data(),TeamManagerEmail:""};
+                try{
+                    await updateDoc(doc(db, 'users',user.id), {
+                        ...newData,
+                    });
+                    alert("You Left your team. Thank You...")
+                    setUser(newData)
+                    setTeam({})
+                }
+                catch(err){
+                    console.log(err);
+                }
+            }
+        }
     }
     return (
         <>
         {console.log(Team)}
-            {Team!==undefined?<>
-                <div className='mt-52'>
+            {Team?<>
+                <div className='mt-10'>
                     <div className="flex flex-col w-full lg:flex-row">
                         <div className="grid flex-grow h-full py-10 card bg-base-300 rounded-box place-items-center">
                             <div className="avatar">
@@ -68,7 +87,7 @@ const PlayerTeamProfile = () => {
                                         <h2 className="card-title">Team {Team.TeamName}!</h2>
                                         <p>Team Manager: {Team.TeamManagerEmail}</p>
                                         <div className="card-actions justify-end">
-                                            <button className="btn btn-primary" onClick={()=>leave}>Leave</button>
+                                            <button className="btn btn-primary" onClick={leave}>Leave</button>
                                         </div>
                                     </div>
                                 </div>
@@ -81,11 +100,7 @@ const PlayerTeamProfile = () => {
                                     
                                     <thead>
                                     <tr>
-                                        
-                                        
                                         <th>Name</th>
-                                        
-                                        
                                     </tr>
                                     </thead>
                                     <tbody>

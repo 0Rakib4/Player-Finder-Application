@@ -73,7 +73,7 @@ const Register = () => {
                     timeStamp: serverTimestamp(),
                 });
             }
-            verifyEmail();
+            // verifyEmail();
         }
         catch(err){
             console.log(err)

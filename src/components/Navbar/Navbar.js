@@ -57,7 +57,8 @@ const Navbar = () => {
                     </div>
                     <button className="btn" 
                     onClick={()=>{
-                        setUser()
+                        setUser({})
+                        localStorage.clear()
                         navigate('/login')
                     }}>Logout</button>
                 </div>

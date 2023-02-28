@@ -11,7 +11,7 @@ const Login = () => {
     const [email,setEmail]=useState();
     const [password,setPassword]=useState()
     useEffect(()=>{
-        if(user?.emailVerified){
+        if(user?.email){
             navigate('/')
         }
         else{
@@ -39,7 +39,7 @@ const Login = () => {
                     console.log(list)
                     const up_user=list.find(item=>item.email==email)
                     const do_up_user={
-                        emailVerified:user.emailVerified,...up_user
+                        emailVerified:true,...up_user
                     }
                     console.log(do_up_user.emailVerified)
                     setUser(do_up_user)
