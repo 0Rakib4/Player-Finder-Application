@@ -4,7 +4,7 @@ import { db, storage } from './../../firebase'
 import { addDoc, serverTimestamp, collection, updateDoc, doc } from 'firebase/firestore'
 import { UserContext } from '../../App';
 const MyProfile = () => {
-    const [user,setuser]=useContext(UserContext)
+    const [user,setUser]=useContext(UserContext)
     const initialState = {
         displayName: "",
         email: user.email,
@@ -69,7 +69,16 @@ const MyProfile = () => {
                 await updateDoc(doc(db, 'users',id), {
                     ...data
                 });
-                setuser({...data})
+                
+                let updateUser={...user};
+                updateUser.nid=data.nid;
+                updateUser.contact=data.contact;
+                updateUser.name=data.displayName;
+                updateUser.present_address=data.present_address;
+                updateUser.permanent_address=data.permanent_address;
+                updateUser.photoURL=data.photoURL;
+                localStorage.setItem('user',JSON.stringify(updateUser))
+                setUser({...updateUser});
                 alert('saved successfully');
                 
             }
@@ -99,11 +108,11 @@ const MyProfile = () => {
                         </label>
                         <label className="input-group m-2">
                             <span className='w-1/4'>present Address</span>
-                            <input type="text" placeholder={ "Your Present Address"}  className="input input-bordered w-full" required name='present_address' />
+                            <input type="text" placeholder={ "Your Present Address"}  className="input input-bordered w-full" required name='present_address' onChange={handleChange} />
                         </label>
                         <label className="input-group m-2">
                             <span className='w-1/4'>Permanent Address</span>
-                            <input type="text" placeholder={"Your Permanent Address"}  className="input input-bordered w-full" name='permanent_address' required />
+                            <input type="text" placeholder={"Your Permanent Address"}  className="input input-bordered w-full" name='permanent_address' onChange={handleChange} required />
                         </label>
                         <label className="input-group m-2">
                             <span className='w-1/4'>Contact</span>
