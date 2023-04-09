@@ -88,9 +88,9 @@ const Navbar = () => {
                     <div className="modal-box">
                         <h3 className="font-bold text-lg">Welcome {user.name}!</h3>
                         <p className="py-4 font-bold">Here is you profile details</p>
-                        <p className='text-left'>name: {user.name}</p>
-                        <p className='text-left'>email: {user.email}</p>
-                        <p className='text-left'>contact: {user.contact}</p>
+                        <p className='text-left'>Name: {user.name}</p>
+                        <p className='text-left'>Email: {user.email}</p>
+                        <p className='text-left'>Contact: {user.contact}</p>
                         <p className='text-left'>Games Type: {user.gamesType}</p>
                         <p className='text-left'>Present Address: {user.present_address}</p>
                         <p className='text-left'>Permanent Address: {user.permanent_address}</p>

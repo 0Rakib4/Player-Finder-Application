@@ -31,14 +31,14 @@ const PlayerDashboard = () => {
         
         <div>
             {console.log(Team)}
-            <div className='flex justify-around m-24 flex-row'>
+            <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 lg:ms-28 lg:mt-28'>
                 {Team.length==0?<h1 className='text-2xl text-red-500'>Sorry!! No Team Available in {user.gamesType}</h1>:
                 <>
                 {
                     Team.map(team=>{
                         return (
                             <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                                <figure><img src={team.photoURL} alt="Shoes" className='w-full h-5/6' /></figure>
+                                <figure><img src={team.photoURL} alt="Shoes" className='w-full h-96' /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">Team Name: {team.TeamName}</h2>
                                     <p className='text-blue-800'>Team Manager Email: {team.TeamManagerEmail}</p>
