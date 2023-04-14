@@ -87,7 +87,7 @@ const Navbar = () => {
                     <div className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box">
                         <h3 className="font-bold text-lg">Welcome {user.name}!</h3>
-                        <p className="py-4 font-bold">Here is you profile details</p>
+                        <p className="py-4 font-bold">Here is your profile details</p>
                         <p className='text-left'>Name: {user.name}</p>
                         <p className='text-left'>Email: {user.email}</p>
                         <p className='text-left'>Contact: {user.contact}</p>
