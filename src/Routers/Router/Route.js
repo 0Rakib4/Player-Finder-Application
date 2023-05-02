@@ -13,6 +13,7 @@ import TeamProfile from "../../pages/TeamProfile/TeamProfile";
 import PlayerTeamProfile from "../../pages/TeamProfile/PlayerTeamProfile";
 import PlayerMyProfile from "../../pages/MyProfile/PlayerMyProfile";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Comparison from "../../pages/Comparison/Comparison";
   export const router = createBrowserRouter([
       {
         path: "/",
@@ -46,6 +47,10 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
           {
             path: "/Requests",
             element: <Requests></Requests>,
+          },
+          {
+            path: "/Comparison",
+            element: <Comparison></Comparison>,
           },
         ],
       },

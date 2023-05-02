@@ -9,7 +9,7 @@ const Navbar = () => {
     const navigate=useNavigate();
     return (
         <div>
-            <div className="navbar bg-base-100" data-theme="night">
+            <div className="navbar bg-base-100 shadow-2xl rounded" data-theme="aqua">
                 <div className="navbar-start">
                     <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -30,9 +30,10 @@ const Navbar = () => {
                         <li><Link to='/Chat'>Chat</Link></li>
                         {console.log(user.userType)}
                         {user.userType=='Player' && <li><Link to='/requests'>Requests</Link></li>}
+                        {user.userType!='Player' && <li><Link to='/Comparison'>Comparison</Link></li>}
                     </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">Player Finder Application</a>
+                    <Link to='/'><a className="btn btn-ghost normal-case text-xl">Player Finder Application</a></Link>
                 </div>
                 <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal">
@@ -51,6 +52,7 @@ const Navbar = () => {
                     
                     <li><Link to='/Chat'>Chat</Link></li>
                     {user.userType=='Player' && <li><Link to='/requests'>Requests</Link></li>}
+                    {user.userType!='Player' && <li><Link to='/Comparison'>Comparison</Link></li>}
                     </ul>
 
                     <div className="dropdown dropdown-end">

@@ -174,7 +174,7 @@ const MyProfile = () => {
                         <h3 className="text-lg font-bold">Name: {selectPlayer.name}</h3>
                         <p className="py-4"><span className='font-semibold'>SKills:</span> {selectPlayer.skill}</p>
                         <p className="py-4"><span className='font-semibold'>Played Games:</span> {selectPlayer.playedGames}</p>
-                        <p className="py-4"><span className='font-semibold'>Scores:</span> {selectPlayer.score}</p>
+                        <p className="py-4"><span className='font-semibold'>Scores:</span> {selectPlayer.scores}</p>
                         <p className="py-4"><span className='font-semibold'>Expetected Price:</span> {selectPlayer.expectedPrice}</p>
                         <p className="py-4"><span className='font-semibold'>Contact:</span> {selectPlayer.contact}</p>
                         <p className="py-4"><span className='font-semibold'>Player email:</span> {selectPlayer.email}</p>
