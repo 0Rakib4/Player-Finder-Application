@@ -38,12 +38,25 @@ const Login = () => {
                     });
                     console.log(list)
                     const up_user=list.find(item=>item.email==email)
-                    const do_up_user={
-                        emailVerified:true,...up_user
+                    if(up_user.status){
+                        if(up_user.status==="UnBlock"){
+                            const do_up_user={
+                                emailVerified:true,...up_user
+                            }
+                            console.log(do_up_user.emailVerified)
+                            setUser(do_up_user)
+                            localStorage.setItem('user', JSON.stringify(do_up_user));        
+                        }
                     }
-                    console.log(do_up_user.emailVerified)
-                    setUser(do_up_user)
-                    localStorage.setItem('user', JSON.stringify(do_up_user));
+                    else{
+                        const do_up_user={
+                            emailVerified:true,...up_user
+                        }
+                        console.log(do_up_user.emailVerified)
+                        setUser(do_up_user)
+                        localStorage.setItem('user', JSON.stringify(do_up_user));    
+                    }
+                    
                     
                 }, (error) => {
                     console.log(error);

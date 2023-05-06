@@ -14,6 +14,10 @@ import PlayerTeamProfile from "../../pages/TeamProfile/PlayerTeamProfile";
 import PlayerMyProfile from "../../pages/MyProfile/PlayerMyProfile";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Comparison from "../../pages/Comparison/Comparison";
+import PlayerDashboard from "../../pages/PlayerDashboard/PlayerDasboard";
+import TeamManagerDashboard from "../../pages/TeamManagerDashboard/TeamManagerDashboard";
+import NewEvent from "../../pages/NewEvent/NewEvent";
+import ManageAccount from "../../pages/ManageAccount/ManageAccount";
   export const router = createBrowserRouter([
       {
         path: "/",
@@ -23,7 +27,22 @@ import Comparison from "../../pages/Comparison/Comparison";
             path: "/",
             element: <Home></Home>,
           },
-          
+          {
+            path: "/players",
+            element: <TeamManagerDashboard></TeamManagerDashboard>
+          },
+          {
+            path: "/ManageAccount",
+            element: <ManageAccount></ManageAccount>
+          },
+          {
+            path: "/createEvent",
+            element: <NewEvent></NewEvent>
+          },
+          {
+            path: "/teamManager",
+            element: <PlayerDashboard></PlayerDashboard>
+          },  
           {
             path: "/MyProfile",
             element: <MyProfile></MyProfile>

@@ -17,6 +17,9 @@ const Navbar = () => {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to='/'>Home</Link></li>
+                        {user.userType=='Team Manager' && <li><Link to='/players'>Players</Link></li>}
+                        {user.userType=='Player' && <li><Link to='/teamManager'>Team Managers</Link></li>}
+                        {user.userType!=="Admin"?
                         <li tabIndex={0}>
                         <a className="justify-between">
                             Profile
@@ -27,10 +30,11 @@ const Navbar = () => {
                             <li><Link to={user.userType=='Team Manager'?'/MyProfile':'/PlayerMyProfile'}>My Profile</Link></li>
                         </ul>
                         </li>
+                        :<><li><Link to="/ManageAccount">Manage Account</Link></li></>}
                         <li><Link to='/Chat'>Chat</Link></li>
                         {console.log(user.userType)}
                         {user.userType=='Player' && <li><Link to='/requests'>Requests</Link></li>}
-                        {user.userType!='Player' && <li><Link to='/Comparison'>Comparison</Link></li>}
+                        {user.userType!='Team Manager' && <li><Link to='/Comparison'>Comparison</Link></li>}
                     </ul>
                     </div>
                     <Link to='/'><a className="btn btn-ghost normal-case text-xl">Player Finder Application</a></Link>
@@ -38,6 +42,9 @@ const Navbar = () => {
                 <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal">
                     <li><Link to='/'>Home</Link></li>
+                    {user.userType=='Team Manager' && <li><Link to='/players'>Players</Link></li>}
+                        {user.userType=='Player' && <li><Link to='/teamManager'>Team Managers</Link></li>}
+                    {user.userType!=="Admin"?
                     <li tabIndex={0}>
                         <a>
                         Profile
@@ -48,8 +55,8 @@ const Navbar = () => {
                             <li><Link to={user.userType=='Team Manager'?'/TeamProfile':'/PlayerTeamProfile'}>Team Profile</Link></li>
                             <li><Link to={user.userType=='Team Manager'?'/MyProfile':'/PlayerMyProfile'}>My Profile</Link></li>
                         </ul>
-                    </li>
-                    
+                    </li>:<><li><Link to="/ManageAccount">Manage Account</Link></li></> }
+                    {user.userType==="Admin"?<li><Link to="/createEvent">Create Event</Link></li>:<></>}
                     <li><Link to='/Chat'>Chat</Link></li>
                     {user.userType=='Player' && <li><Link to='/requests'>Requests</Link></li>}
                     {user.userType!='Player' && <li><Link to='/Comparison'>Comparison</Link></li>}
