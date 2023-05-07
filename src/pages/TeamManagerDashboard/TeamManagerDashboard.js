@@ -125,7 +125,7 @@ const MyProfile = () => {
     return (
         
         <div>
-           <h1 className='text-4xl text-blue-500'>Team Manager Dashboard</h1>
+           <h1 className='text-4xl text-blue-500'>Available Player List</h1>
             <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 lg:ms-28 lg:mt-28'>
                 
                 {players.length==0?<h1 className='text-2xl text-red-500'>Sorry!! No Players Available in {user.gamesType}</h1>:
@@ -134,7 +134,7 @@ const MyProfile = () => {
                     players.map(player=>{
                         return (
                             <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                                <figure><img src={player.photoURL} alt="Shoes" className='w-full h-96' /></figure>
+                                <figure><img src={player.photoURL} alt="picture" className='w-full h-96' /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">Player Name: {player.name}</h2>
                                     <p className='text-left'>Games Types: {player.gamesType}</p>
