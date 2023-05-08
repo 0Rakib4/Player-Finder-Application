@@ -21,6 +21,8 @@ const TeamProfile = () => {
     const [errors, setErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [team,setTeam]=useState();
+    
+    const [TeamMember,setTeamMember]=useState([]);
     useEffect(()=>{
         const unsub = onSnapshot(
             collection(db, "team"),
@@ -70,6 +72,26 @@ const TeamProfile = () => {
         file && uploadFile()
     }, [file])
 
+
+    useEffect(()=>{
+        
+        const unsub = onSnapshot(
+            collection(db, "users"),
+            (snapshot) => {
+                let list = [];
+                snapshot.docs.forEach((doc) => {
+                    list.push({ id: doc.id, ...doc.data() })
+                });   
+                setTeamMember(list.filter(item=>item.TeamManagerEmail==user?.email))
+                setLoading(false);
+            }, (error) => {
+                console.log(error);
+            }
+        );
+        return () => {
+            unsub();
+        }
+    },[team])
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
@@ -98,10 +120,9 @@ const TeamProfile = () => {
     }
     return (
         <div>
-            <div>                
-                <div className='mx-auto w-3/4 mt-24'>
-                    <>
-                                              
+            <div className="flex flex-col w-full lg:flex-row">
+                <div className='mx-10 w-1/2 mt-24'>
+                    <>                    
                         <div className="form-control">
                             <label className="input-group m-2">
                                 <span className='w-1/4'>Team Name</span>
@@ -120,6 +141,34 @@ const TeamProfile = () => {
                         </div>
                         <button className="btn btn-primary w-1/4" onClick={handleSubmit} disabled={progress !== null && progress < 100} >Save</button>
                     </>
+                </div>
+                <div className="divider lg:divider-horizontal">  </div> 
+                <div className="grid flex-grow card bg-base-300 rounded-box place-items-center w-1/2 mt-24 mx-10">
+                    <div className="overflow-x-auto w-full">
+                        <table className="table w-full">    
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {TeamMember.map(tm=>{
+                                    return(
+                                        <tr>            
+                                            <td>
+                                            <div className="flex items-center space-x-3">
+                                                <div>
+                                                    <div className="font-bold">{tm.name}</div>
+                                                    <div className="text-sm opacity-50">{tm.contact}</div>
+                                                </div>
+                                            </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

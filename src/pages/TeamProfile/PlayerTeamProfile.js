@@ -94,7 +94,7 @@ const PlayerTeamProfile = () => {
                             </div>
                         </div> 
                         <div className="divider lg:divider-horizontal">  </div> 
-                        <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center">
+                        <div className="grid flex-grow card bg-base-300 rounded-box place-items-center">
                             <div className="overflow-x-auto w-full">
                                 <table className="table w-full">
                                     

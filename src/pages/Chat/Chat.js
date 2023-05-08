@@ -106,6 +106,7 @@ const Chat = () => {
     }
 
     function loadMessage(messageId){
+        console.log(messageId)
         setActiveUser(messageId);
         setActiveUserMsg(()=>messages.filter(item=>item.FromEmail===activeUser || item.ToEmail===activeUser))
     }
@@ -116,11 +117,11 @@ const Chat = () => {
                 {activeUserMsg.map(item=>{
                     return (
                         <div style={{marginBottom:"20px"}} className="grid w-full">
-                            {item.FromEmail!=user.email?
+                            {item.FromEmail!=user.email && item.message!==""?
                             <> <div className="chat chat-start justify-self-start">
                                 <div className="chat-bubble">{item.message}</div>
                             </div></>:<></>}
-                            {item.FromEmail==user.email? 
+                            {item.FromEmail==user.email && item.message!==""? 
                             <>
                                 <div className="chat chat-end justify-self-end">
                                     <div className="chat-bubble">{item.message}</div>
@@ -138,7 +139,7 @@ const Chat = () => {
             <div className="drawer-side drop-shadow-xl">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
                 <ul className="menu p-4 w-80 bg-base-100 text-base-content  bg-sky-200 ">
-                {console.log(messageUser)}
+                {/* {console.log(messageUser)} */}
                     {messageUser.map(item=>{
                         return(
                             <li>
