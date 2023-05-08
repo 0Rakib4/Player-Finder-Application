@@ -37,8 +37,8 @@ const Events = () => {
                             <div className="card-body">
                                 <h2 className="text-3xl text-center">{item.EventName}</h2>
                                 <p className='text-2xl'>{item.Team1} VS {item.Team2}</p>
-                                <p className='text-xl'>{item.Date} VS {item.Time}</p>
-                                
+                                <p className='text-xl'> Date: {item.Date}</p>
+                                <p className='text-xl text-center'> Time: {item.Time}</p>
                             </div>
                         </div>
                     </div>

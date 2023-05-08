@@ -103,7 +103,7 @@ const PlayerMyProfile = () => {
                              className="input input-bordered w-full" onChange={handleChange}  name='nid' required />
                         </label>
                         <label className="input-group m-2">
-                            <span className='w-1/4'>present Address</span>
+                            <span className='w-1/4'>Present Address</span>
                             <input type="text" placeholder={ "Your Present Address"}  className="input input-bordered w-full" 
                             required name='present_address' onChange={handleChange}/>
                         </label>

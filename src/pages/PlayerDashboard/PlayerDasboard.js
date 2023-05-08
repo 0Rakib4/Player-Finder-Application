@@ -38,7 +38,7 @@ const PlayerDashboard = () => {
                     Team.map(team=>{
                         return (
                             <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                                <figure><img src={team.photoURL} alt="Shoes" className='w-full h-96' /></figure>
+                                <figure><img src={team.photoURL} alt="Image" className='w-full h-96' /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">Team Name: {team.TeamName}</h2>
                                     <p className='text-blue-800'>Team Manager Email: {team.TeamManagerEmail}</p>
