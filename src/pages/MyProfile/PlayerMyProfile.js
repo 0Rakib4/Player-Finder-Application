@@ -5,24 +5,29 @@ import { addDoc, serverTimestamp, collection, updateDoc, doc } from 'firebase/fi
 import { UserContext } from '../../App';
 
 const PlayerMyProfile = () => {
-    const [user,setuser]=useContext(UserContext)
+    const [user,setUser]=useContext(UserContext)
     const initialState = {
-        displayName: "",
+        name: "",
         email: user.email,
         present_address: "",
         permanent_address: "",
         nid: "",
         contact: "",
         scores: "",
+        assist: "",
+        save: "",
+        red_card: "",
+        yellow_card: "",
         skill: "",
         playedGames:"",
         expectedPrice:"",
         password:"",
         id:user.id,
-        photoURL: ""
+        photoURL: "",
+        gamesType: user.gamesType
     }
     const [data, setData] = useState(initialState);
-    const { displayName, email, permanent_address, present_address, contact, nid ,password,id,photoURL,scores,skill, playedGames,expectedPrice} = data;
+    const { name, email, permanent_address, present_address, contact, nid ,password,id,photoURL,scores,assist,save,red_card,yellow_card,skill, playedGames,expectedPrice,gamesType} = data;
     const [file, setFile] = useState(null);
     const [progress, setProgress] = useState(null);
     const [errors, setErrors] = useState({});
@@ -74,8 +79,11 @@ const PlayerMyProfile = () => {
                 await updateDoc(doc(db, 'users',id), {
                     ...data
                 });
-                setuser({...data})
+
+                setUser({...data})
+                localStorage.setItem("user",JSON.stringify({...data}))
                 alert('saved successfully');
+                
                 
             }
             catch(err){
@@ -95,7 +103,7 @@ const PlayerMyProfile = () => {
                         <label className="input-group m-2">
                             <span className='w-1/4'>Full Name</span>
                             <input type="text" placeholder={"Name"} className="input input-bordered w-full"
-                             name='displayName'  required onChange={handleChange}/>
+                             name='name'  required onChange={handleChange}/>
                         </label>
                         <label className="input-group m-2">
                             <span className='w-1/4'>NID No</span>
@@ -124,6 +132,32 @@ const PlayerMyProfile = () => {
                             onChange={handleChange} required />
                         </label>
                         
+                        {user.gamesType=="Football"?
+                        <>
+                        <label className="input-group m-2">
+                            <span className='w-1/4'>Assist</span>
+                            <input type="number" placeholder={`Your Assist Goal Number`} className="input input-bordered w-full"  name='assist'
+                            onChange={handleChange} required />
+                        </label>
+                        <label className="input-group m-2">
+                            <span className='w-1/4'>Save (only for Goalkeeper)</span>
+                            <input type="number" placeholder={`Your Saved Goal Number`} className="input input-bordered w-full"  name='save'
+                            onChange={handleChange} required />
+                        </label>
+                        <label className="input-group m-2">
+                            <span className='w-1/4'>Red Card</span>
+                            <input type="number" placeholder={`Your Red Card Number`} className="input input-bordered w-full"  name='red_card'
+                            onChange={handleChange} required />
+                        </label>
+                        <label className="input-group m-2">
+                            <span className='w-1/4'>Yellow Card</span>
+                            <input type="number" placeholder={`Your Yellow Card Number`} className="input input-bordered w-full"  name='yellow_card'
+                            onChange={handleChange} required />
+                        </label>
+                        </>
+                        :<></>}
+                        
+
                         <label className="input-group m-2">
                             <span className='w-1/4'>Skill</span>
                             <input type="text" placeholder={ "Describe your skills"} className="input input-bordered w-full"  name='skill'

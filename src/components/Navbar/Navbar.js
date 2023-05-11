@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { LoadingContext, UserContext } from '../../App';
 
@@ -7,6 +7,7 @@ const Navbar = () => {
     const [loading,setLoading]=useContext(LoadingContext);
 
     const navigate=useNavigate();
+   
     return (
         <div>
             <div className="navbar bg-base-100 shadow-2xl rounded" data-theme="aqua">
@@ -37,7 +38,7 @@ const Navbar = () => {
                         {user.userType!='Team Manager' && <li><Link to='/Comparison'>Comparison</Link></li>}
                     </ul>
                     </div>
-                    <Link to='/'><a className="btn btn-ghost normal-case text-xl">Player Finder Application</a></Link>
+                    <Link to='/'><label className="btn btn-ghost normal-case text-xl">Player Finder Application</label></Link>
                 </div>
                 <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal">
