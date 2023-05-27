@@ -73,7 +73,7 @@ const PlayerTeamProfile = () => {
         <>
         {console.log(Team)}
             {Team?<>
-                <div className='mt-10'>
+                <div className='mt-28'>
                     <div className="flex flex-col w-full lg:flex-row">
                         <div className="grid flex-grow h-full py-10 card bg-base-300 rounded-box place-items-center">
                             <div className="avatar">
@@ -84,8 +84,8 @@ const PlayerTeamProfile = () => {
                                         <img src={Team.photoURL} />
                                     </div>
                                     <div className="card-body">
-                                        <h2 className="card-title">Team {Team.TeamName}!</h2>
-                                        <p>Team Manager: {Team.TeamManagerEmail}</p>
+                                        <h2 className="card-title">Team name: {Team.TeamName}</h2>
+                                        <p className="card-name text-left">Team Manager: {Team.TeamManagerEmail}</p>
                                         <div className="card-actions justify-end">
                                             <button className="btn btn-primary" onClick={leave}>Leave</button>
                                         </div>

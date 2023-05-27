@@ -24,12 +24,15 @@ const PlayerMyProfile = () => {
         password:"",
         id:user.id,
         photoURL: "",
+        videoURL:"",
         gamesType: user.gamesType
     }
     const [data, setData] = useState(initialState);
     const { name, email, permanent_address, present_address, contact, nid ,password,id,photoURL,scores,assist,save,red_card,yellow_card,skill, playedGames,expectedPrice,gamesType} = data;
     const [file, setFile] = useState(null);
+    const [file2,setFile2]=useState(null);
     const [progress, setProgress] = useState(null);
+    const [progress2, setProgress2] = useState(null);
     const [errors, setErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     
@@ -62,6 +65,35 @@ const PlayerMyProfile = () => {
         }
         file && uploadFile()
     }, [file])
+
+    useEffect(() => {
+        const uploadFile = () => {
+            const name = new Date().getTime() + file2.name;
+            const storageRef = ref(storage, file2.name);
+            const uploadTask = uploadBytesResumable(storageRef, file2);
+            uploadTask.on("state_changed", (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                setProgress2(progress);
+                switch (snapshot.state) {
+                    case 'paused':
+                        console.log('upload is paused');
+                        break;
+                    case 'running':
+                        console.log('upload is running');
+                        break;
+                    default:
+                        break;
+                }
+            }, (error) => {
+                console.log(error)
+            }, () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setData((prev) => ({ ...prev, videoURL: downloadURL }));
+                });
+            })
+        }
+        file2 && uploadFile()
+    }, [file2])
 
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
@@ -182,8 +214,12 @@ const PlayerMyProfile = () => {
                             <span className='w-1/4'>Change Profile Image</span>
                             <input type="file"  className="input w-full" name='photoURL'  onChange={(e) => setFile(e.target.files[0])} required />
                         </label>
+                        <label className="input-group m-2">
+                            <span className='w-1/4'>Upload Video</span>
+                            <input type="file"  className="input w-full" name='videoURL'  onChange={(e) => setFile2(e.target.files[0])} required />
+                        </label>
                     </div>
-                    <button className="btn btn-primary w-1/4" onClick={handleSubmit} disabled={progress !== null && progress < 100} >Update Profile</button>
+                    <button className="btn btn-primary w-1/4 mt-4 mb-10" onClick={handleSubmit} disabled={progress !== null && progress < 100} >Update Profile</button>
                 </>
             </div>
 

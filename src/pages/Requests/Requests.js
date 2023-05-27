@@ -47,10 +47,11 @@ const Requests = () => {
 
     }
     return (
+
         <div style={{display:"flex", justifyContent:"center", alignContent:"start"}}>
             {request.map(reqt=>{
                 return (
-                <div className="card w-96 bg-base-100 shadow-xl mx-2">
+                <div className="card w-96 bg-base-100 shadow-xl mx-2 mt-20">
                     <div className="card-body" style={{textAlign:"left"}}>
                         <p><b>From :</b> {reqt.FromEmail}</p>
                         <p><b>Message :</b> {reqt.note}</p>

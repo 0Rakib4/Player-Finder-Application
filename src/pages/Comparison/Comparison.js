@@ -71,16 +71,16 @@ const Comparison = () => {
                         <button className="btn btn-success" onClick={searchPlayer2}>Search</button>    
                     </div>                    
                     <div>
-                        <h1 className='p-5 bg-blue-200 rounded m-2'>Name: {player2.name?player2.name:""}</h1>
-                        <h1 className='p-5 bg-blue-300 rounded m-2'>Skills: {player2.skill?player2.skill:""}</h1>
-                        <h1 className='p-5 bg-blue-400 rounded m-2'>Scores: {player2.scores?player2.scores:""}</h1>
+                        <h1 className='p-5 bg-red-200 rounded m-2'>Name: {player2.name?player2.name:""}</h1>
+                        <h1 className='p-5 bg-red-300 rounded m-2'>Skills: {player2.skill?player2.skill:""}</h1>
+                        <h1 className='p-5 bg-red-400 rounded m-2'>Scores: {player2.scores?player2.scores:""}</h1>
                         {user.gamesType=="Football"?<>
                         <h1 className='p-5 bg-blue-400 rounded m-2'>Assist: {player2.assist?player2.assist:""}</h1>
                         <h1 className='p-5 bg-blue-400 rounded m-2'>Save: {player2.save?player2.save:""}</h1>
                         <h1 className='p-5 bg-blue-400 rounded m-2'>Red Card: {player2.red_card?player2.red_card:""}</h1>
                         <h1 className='p-5 bg-blue-400 rounded m-2'>Yellow Card: {player2.yellow_card?player2.yellow_card:""}</h1>
                         </>:<></>}
-                        <h1 className='p-5 bg-blue-500 rounded m-2'>Played Games: {player2.playedGames?player2.playedGames:""}</h1>
+                        <h1 className='p-5 bg-red-500 rounded m-2'>Played Games: {player2.playedGames?player2.playedGames:""}</h1>
                     </div>
                     <div className="radial-progress" style={{ "--value": ((player2.scores/player2.playedGames?player2.scores/player2.playedGames:0)*100).toFixed(2), "--size": "12rem", "--thickness": "2rem","color":"blue" }}>{((player2.scores/player2.playedGames?player2.scores/player2.playedGames:0)*100).toFixed(2)}%</div>
                 </div>

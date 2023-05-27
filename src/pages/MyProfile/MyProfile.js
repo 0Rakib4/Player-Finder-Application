@@ -124,7 +124,7 @@ const MyProfile = () => {
                             <input type="file"  className="input w-full" name='photoURL'  onChange={(e) => setFile(e.target.files[0])} required />
                         </label>
                     </div>
-                    <button className="btn btn-primary w-1/4" onClick={handleSubmit} disabled={progress !== null && progress < 100} >Update Profile</button>
+                    <button className="btn btn-primary w-1/4 mt-4 mb-10" onClick={handleSubmit} disabled={progress !== null && progress < 100} >Update Profile</button>
                 </>
             </div>
 

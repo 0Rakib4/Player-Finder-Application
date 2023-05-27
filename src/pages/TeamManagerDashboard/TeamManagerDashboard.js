@@ -4,6 +4,7 @@ import { db } from '../../firebase';
 import {  UserContext } from '../../App';
 import { async } from '@firebase/util';
 import { toast } from 'react-hot-toast';
+import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 
 const MyProfile = () => {
     const [loading, setLoading] = useState(false);
@@ -13,6 +14,7 @@ const MyProfile = () => {
     const [selectPlayer,setSelectedPlayer]=useState({})
     const [selectTeam,setSelectedTeam]=useState({})
     const [reviews,setReview]=useState([])
+    
     useEffect(()=>{
         const unsub = onSnapshot(
             collection(db, "users"),
@@ -122,6 +124,7 @@ const MyProfile = () => {
        var temp=team.find(item=>item.TeamManagerEmail===player.TeamManagerEmail)
        setSelectedTeam(temp)
     }
+    
     return (
         
         <div>
@@ -161,6 +164,7 @@ const MyProfile = () => {
                                     <img src={selectPlayer.photoURL?selectPlayer.photoURL:""} alt="not found"/>
                                 </div>
                             </div>
+                            
                             <div className='mr-12'>
                                 <div className="avatar">
                                     <div className="w-16 mask mask-hexagon">
@@ -175,11 +179,19 @@ const MyProfile = () => {
                         <p className="py-4"><span className='font-semibold'>SKills:</span> {selectPlayer.skill}</p>
                         <p className="py-4"><span className='font-semibold'>Played Games:</span> {selectPlayer.playedGames}</p>
                         <p className="py-4"><span className='font-semibold'>Scores:</span> {selectPlayer.scores}</p>
+                        <p className="py-4"><span className='font-semibold'>Assist:</span> {selectPlayer.assist}</p>
+                        <p className="py-4"><span className='font-semibold'>Save:</span> {selectPlayer.save}</p>
+                        <p className="py-4"><span className='font-semibold'>Red Card:</span> {selectPlayer.red_card}</p>
+                        <p className="py-4"><span className='font-semibold'>Yellow Card:</span> {selectPlayer.yellow_card}</p>
                         <p className="py-4"><span className='font-semibold'>Expetected Price:</span> {selectPlayer.expectedPrice}</p>
                         <p className="py-4"><span className='font-semibold'>Contact:</span> {selectPlayer.contact}</p>
                         <p className="py-4"><span className='font-semibold'>Player email:</span> {selectPlayer.email}</p>
                         <p className="py-4"><span className='font-semibold'>Present Address:</span> {selectPlayer.present_address}</p>
-                        <div className='flex  '>
+                        
+                        <embed width="400" height="300" src={selectPlayer.videoURL?selectPlayer.videoURL:""} alt="no video available"/>
+                        <br/>
+                        <br/>
+                        <div className='flex'>
                             <button className='btn btn-success mr-5' onClick={addReview}>Review</button>
                             <button className='btn btn-warning' onClick={sentRequest}>Sent Request</button>
                         </div>
